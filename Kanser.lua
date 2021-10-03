@@ -70,8 +70,7 @@ TokenBot = DevAli:get(ServerKanser.."TokenKanser"),
 Kanser = DevAli:get(ServerKanser.."TokenKanser"):match("(%d+)"),
 SudoIds = {DevAli:get(ServerKanser.."IdKanser")},
 }            
-Create(Config, "./config.lua")    
-end        
+Create(Config, "./config.lua")           
 file:write([[            
 #!/usr/bin/env bash
 cd $HOME/Kanser
