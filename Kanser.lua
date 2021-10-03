@@ -10469,7 +10469,7 @@ end
 send(msg.chat_id_, msg.id_,Files)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/KanserTEM/KanserFiles/master/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/KanserTEM/KanserFile/master/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
@@ -10478,7 +10478,7 @@ local TextS = "\n♪︙قائمة ملفات متجر سورس ريلاكس\n♪
 local TextE = "┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n♪︙علامة ↫ (✔) تعني الملف مفعل\n♪︙علامة ↫ (✖️) تعني الملف معطل\n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
-local CheckFileisFound = io.open("Files/"..name,"r")
+local CheckFileisFound = io.open("File/"..name,"r")
 if CheckFileisFound then
 io.close(CheckFileisFound)
 CheckFile = "(✔)"
@@ -10495,15 +10495,15 @@ send(msg.chat_id_, msg.id_,"♪︙لا يوجد اتصال من الـapi")
 end
 end
 if text == "مسح جميع الملفات" or text == "حذف جميع الملفات" then
-os.execute("rm -fr Files/*")
+os.execute("rm -fr File/*")
 send(msg.chat_id_,msg.id_,"♪︙تم حذف جميع الملفات المفعله")
 end
 if text and text:match("^(تعطيل ملف) (.*)(.lua)$") then
 local FileGet = {string.match(text, "^(تعطيل ملف) (.*)(.lua)$")}
 local FileName = FileGet[2]..'.lua'
-local GetJson, Res = https.request("https://raw.githubusercontent.com/KanserTEM/KanserFiles/master/KanserFiles/"..FileName)
+local GetJson, Res = https.request("https://raw.githubusercontent.com/KanserTEM/KanserFile/master/KanserFile/"..FileName)
 if Res == 200 then
-os.execute("rm -fr Files/"..FileName)
+os.execute("rm -fr File/"..FileName)
 send(msg.chat_id_, msg.id_,"\n♪︙الملف ↫ *"..FileName.."*\n♪︙تم تعطيله وحذفه من البوت بنجاح") 
 dofile('Kanser.lua')  
 else
@@ -10513,9 +10513,9 @@ end
 if text and text:match("^(تفعيل ملف) (.*)(.lua)$") then
 local FileGet = {string.match(text, "^(تفعيل ملف) (.*)(.lua)$")}
 local FileName = FileGet[2]..'.lua'
-local GetJson, Res = https.request("https://raw.githubusercontent.com/KanserTEM/KanserFiles/master/KanserFiles/"..FileName)
+local GetJson, Res = https.request("https://raw.githubusercontent.com/KanserTEM/KanserFil/master/KanserFil/"..FileName)
 if Res == 200 then
-local ChekAuto = io.open("Files/"..FileName,'w+')
+local ChekAuto = io.open("File/"..FileName,'w+')
 ChekAuto:write(GetJson)
 ChekAuto:close()
 send(msg.chat_id_, msg.id_,"\n♪︙الملف ↫ *"..FileName.."*\n♪︙تم تفعيله في البوت بنجاح") 
